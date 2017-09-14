@@ -1,7 +1,7 @@
-package br.senac.rn.principal;
+package br.senac.rn.view;
 
 import br.senac.rn.dao.SexoDAO;
-import br.senac.rn.model.Sexo;
+
 
 public class Principal {
     
@@ -9,7 +9,6 @@ public class Principal {
         
         SexoDAO dao = new SexoDAO();
         
-        dao.excluir(dao.buscarPorId(3));
         
         System.exit(0);
         
