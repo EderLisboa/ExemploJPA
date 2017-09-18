@@ -1,11 +1,12 @@
 package br.senac.rn.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 
 @Entity(name = "tb_clientes")
 public class Cliente {
@@ -14,23 +15,30 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.AUTO) 
     private int id;
     private String nome;
+    @Column(unique = true)
     private String cpf;
-    @ManyToOne
+    @ManyToOne // classe interna To classe estrangeira
     private Sexo sexo;
-    @OneToMany
-    private Produto produto;
-
-    
+  
 
     public Cliente() {
     }
     
-    public Cliente(String nome, String cpf, Sexo sexo, Produto produto) {
+    public Cliente(String nome, String cpf, Sexo sexo) {
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;
-        this.produto = produto;
+       
     }
+
+    public Cliente(int id, String nome, String cpf, Sexo sexo) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.sexo = sexo;
+    }
+    
+    
 
     public String getCpf() {
         return cpf;
@@ -48,15 +56,6 @@ public class Cliente {
         this.sexo = sexo;
     }
 
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
-
-    
 
     public int getId() {
         return id;
@@ -101,7 +100,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", produto=" + produto + '}';
+        return "Cliente{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + '}';
     }
 
    
